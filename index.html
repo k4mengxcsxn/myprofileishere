@@ -601,47 +601,7 @@ document.addEventListener('click',e=>{
   setTimeout(()=>r.remove(),500);
 });
 
-/* ════════════════════════════
-   SOUNDCLOUD PLAYER + VOLUME
-   ════════════════════════════ */
-
-/* Volume slider */
-const volSlider=document.getElementById('volSlider');
-const volIcon=document.getElementById('volIcon');
-volSlider.addEventListener('input',function(){
-  let scWidget=null,scReady=false;
-
-function initSC(){
-  const frame=document.getElementById('scFrame');
-  if(!window.SC||!frame)return;
-  scWidget=SC.Widget(frame);
-  scWidget.bind(SC.Widget.Events.READY,()=>{ scReady=true; });
-}
-window.addEventListener('load',()=>{ setTimeout(initSC,1000); });
-
-const playBtn=document.getElementById('playBtn');
-const pauseBtn=document.getElementById('pauseBtn');
-
-function setPlaying(state){
-  if(state){
-    playBtn.style.opacity='.4'; playBtn.style.pointerEvents='none';
-    pauseBtn.style.opacity='1'; pauseBtn.style.pointerEvents='auto';
-  } else {
-    playBtn.style.opacity='1'; playBtn.style.pointerEvents='auto';
-    pauseBtn.style.opacity='.4'; pauseBtn.style.pointerEvents='none';
-  }
-}
-
-playBtn.addEventListener('click',()=>{
-  if(!scReady){
-    initSC();
-    if(scWidget){
-      scWidget.bind(SC.Widget.Events.READY,()=>{
-        scReady=true; scWidget.play(); setPlaying(true);
-      });
-    }
-    return;
-  }
+/
   scWidget.play(); setPlaying(true);
 });
 
