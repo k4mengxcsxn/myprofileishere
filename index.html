@@ -427,7 +427,7 @@ body{
 
 <!-- SoundCloud embed (hidden) -->
 <iframe id="scFrame" style="display:none" allow="autoplay"
-  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/https://on.soundcloud.com/Jzad0UY7qwN7IPDgKG&color=%2300d4ff&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/duongphuc1909/ngay-anh-roi-paris-homesick&color=%23ff2244&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
 </iframe>
 <script src="https://w.soundcloud.com/player/api.js"></script>
 
@@ -605,10 +605,18 @@ window.addEventListener('load',()=>{
 const musicBtn=document.getElementById('musicBtn');
 let isPlaying=false;
 musicBtn.addEventListener('click',()=>{
-  if(!scReady){alert('⚠️ https://on.soundcloud.com/Jzad0UY7qwN7IPDgKG');return;}
-  if(!isPlaying){scWidget.play();musicBtn.classList.add('playing');}
-  else{scWidget.pause();musicBtn.classList.remove('playing');}
-  isPlaying=!isPlaying;
+  if(!scReady){
+  if(window.SC){
+    scWidget=SC.Widget(frame);
+    scWidget.bind(SC.Widget.Events.READY,()=>{
+      scReady=true;
+      scWidget.play();
+      musicBtn.classList.add('playing');
+      isPlaying=true;
+    });
+  }
+  return;
+  }
 });
 
 /* Volume slider */
