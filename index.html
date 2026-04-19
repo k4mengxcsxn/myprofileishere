@@ -601,14 +601,44 @@ document.addEventListener('click',e=>{
   setTimeout(()=>r.remove(),500);
 });
 
-/
-  scWidget.play(); setPlaying(true);
+/* ════════════════════════════
+   SOUNDCLOUD PLAYER + VOLUME
+   ════════════════════════════ */
+let scWidget=null,scReady=false;
+const frame=document.getElementById('scFrame');
+
+window.addEventListener('load',()=>{
+  if(window.SC){
+    scWidget=SC.Widget(frame);
+    scWidget.bind(SC.Widget.Events.READY,()=>{scReady=true;});
+  }
 });
 
-pauseBtn.addEventListener('click',()=>{
-  if(!scReady) return;
-  scWidget.pause(); setPlaying(false);
+const musicBtn=document.getElementById('musicBtn');
+let isPlaying=false;
+musicBtn.addEventListener('click',()=>{
+  if(!scReady){
+    if(window.SC){
+      scWidget=SC.Widget(frame);
+      scWidget.bind(SC.Widget.Events.READY,()=>{
+        scReady=true;
+        scWidget.play();
+        musicBtn.classList.add('playing');
+        isPlaying=true;
+      });
+    }
+    return;
+  }
+  if(!isPlaying){scWidget.play();musicBtn.classList.add('playing');}
+  else{scWidget.pause();musicBtn.classList.remove('playing');}
+  isPlaying=!isPlaying;
 });
+
+/* Volume slider */
+const volSlider=document.getElementById('volSlider');
+const volIcon=document.getElementById('volIcon');
+volSlider.addEventListener('input',function(){
+  const v=parseInt(this.value);
   this.style.setProperty('--pct',v+'%');
   if(scReady&&scWidget)scWidget.setVolume(v);
   volIcon.textContent=v===0?'🔇':v<40?'🔉':'🔊';
