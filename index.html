@@ -649,7 +649,7 @@ function setDiscordStatus(status,activity){
 
 async function fetchLanyard(){
   try{
-    const res=await fetch(`https://api.lanyard.rest/v1/users/${1216226389582282842}`);
+    const res=await fetch(`https://api.lanyard.rest/v1/users/1216226389582282842`);
     const json=await res.json();
     if(json.success){
       const d=json.data;
