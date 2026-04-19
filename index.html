@@ -649,7 +649,7 @@ function setDiscordStatus(status,activity){
 
 async function fetchLanyard(){
   try{
-    const res=await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
+    const res=await fetch(`https://api.lanyard.rest/v1/users/${1216226389582282842}`);
     const json=await res.json();
     if(json.success){
       const d=json.data;
@@ -685,7 +685,7 @@ setInterval(fetchLanyard,30000); // poll every 30s
       if(msg.op===1){
         // hello — send init
         heartbeat=setInterval(()=>ws.send(JSON.stringify({op:3})),msg.d.heartbeat_interval);
-        ws.send(JSON.stringify({op:2,d:{subscribe_to_id:DISCORD_ID}}));
+        ws.send(JSON.stringify({op:2,d:{subscribe_to_id:1216226389582282842}}));
       }
       if(msg.op===0){
         const d=msg.d;
