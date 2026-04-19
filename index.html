@@ -592,22 +592,32 @@ document.addEventListener('click',e=>{
 /* ════════════════════════════
    SOUNDCLOUD PLAYER + VOLUME
    ════════════════════════════ */
-let scWidget=null,scReady=false;
-const frame=document.getElementById('scFrame');
+
+/* Volume slider */
+const volSlider=document.getElementById('volSlider');
+const volIcon=document.getElementById('volIcon');
+volSlider.addEventListener('input',function(){
+  const v=parseInt(this.value)let scWidget=null,scReady=false;
+
+function initSC(){
+  const frame=document.getElementById('scFrame');
+  if(!window.SC||!frame)return;
+  scWidget=SC.Widget(frame);
+  scWidget.bind(SC.Widget.Events.READY,()=>{
+    scReady=true;
+  });
+}
 
 window.addEventListener('load',()=>{
-  if(window.SC){
-    scWidget=SC.Widget(frame);
-    scWidget.bind(SC.Widget.Events.READY,()=>{scReady=true;});
-  }
+  setTimeout(initSC,1000);
 });
 
 const musicBtn=document.getElementById('musicBtn');
 let isPlaying=false;
 musicBtn.addEventListener('click',()=>{
   if(!scReady){
-    if(window.SC){
-      scWidget=SC.Widget(frame);
+    initSC();
+    if(scWidget){
       scWidget.bind(SC.Widget.Events.READY,()=>{
         scReady=true;
         scWidget.play();
@@ -620,13 +630,7 @@ musicBtn.addEventListener('click',()=>{
   if(!isPlaying){scWidget.play();musicBtn.classList.add('playing');}
   else{scWidget.pause();musicBtn.classList.remove('playing');}
   isPlaying=!isPlaying;
-});
-
-/* Volume slider */
-const volSlider=document.getElementById('volSlider');
-const volIcon=document.getElementById('volIcon');
-volSlider.addEventListener('input',function(){
-  const v=parseInt(this.value);
+});;
   this.style.setProperty('--pct',v+'%');
   if(scReady&&scWidget)scWidget.setVolume(v);
   volIcon.textContent=v===0?'🔇':v<40?'🔉':'🔊';
