@@ -318,8 +318,8 @@ body{
     <!-- ── TOOLBAR ── -->
     <div class="toolbar">
       <div class="theme-btns">
-        <div class="theme-dot td-red" data-theme="theme-red" title="Red"></div>
-        <div class="theme-dot td-blue active" data-theme="theme-blue" title="Blue"></div>
+        <div class="theme-dot td-red active" data-theme="theme-red" title="Red"></div>
+        <div class="theme-dot td-blue" data-theme="theme-blue" title="Blue"></div>
         <div class="theme-dot td-neon" data-theme="theme-neon" title="Neon"></div>
       </div>
       <div class="vol-wrap">
@@ -606,17 +606,20 @@ const musicBtn=document.getElementById('musicBtn');
 let isPlaying=false;
 musicBtn.addEventListener('click',()=>{
   if(!scReady){
-  if(window.SC){
-    scWidget=SC.Widget(frame);
-    scWidget.bind(SC.Widget.Events.READY,()=>{
-      scReady=true;
-      scWidget.play();
-      musicBtn.classList.add('playing');
-      isPlaying=true;
-    });
+    if(window.SC){
+      scWidget=SC.Widget(frame);
+      scWidget.bind(SC.Widget.Events.READY,()=>{
+        scReady=true;
+        scWidget.play();
+        musicBtn.classList.add('playing');
+        isPlaying=true;
+      });
+    }
+    return;
   }
-  return;
-  }
+  if(!isPlaying){scWidget.play();musicBtn.classList.add('playing');}
+  else{scWidget.pause();musicBtn.classList.remove('playing');}
+  isPlaying=!isPlaying;
 });
 
 /* Volume slider */
