@@ -326,11 +326,15 @@ body{
         <span class="vol-icon" id="volIcon">🔊</span>
         <input type="range" class="vol-slider" id="volSlider" min="0" max="100" value="60" style="--pct:60%"/>
       </div>
-      <div class="music-btn" id="musicBtn" title="Play music">
-        <svg class="music-icon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        <div class="eq-bars"><span></span><span></span><span></span><span></span></div>
+      <div style="display:flex;gap:5px">
+  <div class="music-btn" id="playBtn" title="Play">
+    <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:var(--c1)"><polygon points="5,3 19,12 5,21"/></svg>
+  </div>
+  <div class="music-btn" id="pauseBtn" title="Pause" style="opacity:.4;pointer-events:none">
+    <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:var(--c1)"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+  </div>
       </div>
-    </div>
+
 
     <!-- ── CLOCK ── -->
 <div class="clock-wrap">
@@ -353,9 +357,16 @@ body{
       </div>
       <div class="name-block">
         <div class="username">ka<span>me</span></div>
-        <div class="tagline">// Vietnam🇻🇳 · Player</div>
+        <div class="tagline">// Vietnam🇻🇳 · Player, User</div>
         <div class="discord-status-text">
-      <div class="ds-dot-inline" id="discordDotInline"></div>
+      <div class="ds-dot-inline" id="discordDotInline"></div><div style="display:flex;gap:5px">
+  <div class="music-btn" id="playBtn" title="Play">
+    <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:var(--c1)"><polygon points="5,3 19,12 5,21"/></svg>
+  </div>
+  <div class="music-btn" id="pauseBtn" title="Pause" style="opacity:.4;pointer-events:none">
+    <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:var(--c1)"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+  </div>
+      </div>
           <span id="discordStatusText">Loading...</span>
         </div>
         <div class="level-label">LVL 67 ▸ 72%</div>
@@ -418,7 +429,7 @@ body{
 
     <!-- ── STATS ── -->
     <div class="stats">
-      <div class="stat"><div class="stat-val">VN🇻🇳</div><div class="stat-label">Region</div></div>
+      <div class="stat"><div class="stat-val">Vietnam🇻🇳</div><div class="stat-label">Region</div></div>
       <div class="stat"><div class="stat-val">67</div><div class="stat-label">Level</div></div>
     </div>
 
@@ -426,11 +437,12 @@ body{
 </div><!-- /card -->
 
 <!-- SoundCloud embed (hidden) -->
-<iframe id="scFrame" style="display:none" allow="autoplay"
+<iframe id="scFrame"
+  style="position:fixed;bottom:-9999px;left:-9999px;width:1px;height:1px;pointer-events:none;"
+  allow="autoplay"
   src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/duongphuc1909/ngay-anh-roi-paris-homesick&color=%23ff2244&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
 </iframe>
 <script src="https://w.soundcloud.com/player/api.js"></script>
-
 <script>
 /* ════════════════════════════
    CANVAS BACKGROUND
@@ -597,46 +609,52 @@ document.addEventListener('click',e=>{
 const volSlider=document.getElementById('volSlider');
 const volIcon=document.getElementById('volIcon');
 volSlider.addEventListener('input',function(){
-  const v=parseInt(this.value)let scWidget=null,scReady=false;
+  let scWidget=null,scReady=false;
 
 function initSC(){
   const frame=document.getElementById('scFrame');
   if(!window.SC||!frame)return;
   scWidget=SC.Widget(frame);
-  scWidget.bind(SC.Widget.Events.READY,()=>{
-    scReady=true;
-  });
+  scWidget.bind(SC.Widget.Events.READY,()=>{ scReady=true; });
+}
+window.addEventListener('load',()=>{ setTimeout(initSC,1000); });
+
+const playBtn=document.getElementById('playBtn');
+const pauseBtn=document.getElementById('pauseBtn');
+
+function setPlaying(state){
+  if(state){
+    playBtn.style.opacity='.4'; playBtn.style.pointerEvents='none';
+    pauseBtn.style.opacity='1'; pauseBtn.style.pointerEvents='auto';
+  } else {
+    playBtn.style.opacity='1'; playBtn.style.pointerEvents='auto';
+    pauseBtn.style.opacity='.4'; pauseBtn.style.pointerEvents='none';
+  }
 }
 
-window.addEventListener('load',()=>{
-  setTimeout(initSC,1000);
-});
-
-const musicBtn=document.getElementById('musicBtn');
-let isPlaying=false;
-musicBtn.addEventListener('click',()=>{
+playBtn.addEventListener('click',()=>{
   if(!scReady){
     initSC();
     if(scWidget){
       scWidget.bind(SC.Widget.Events.READY,()=>{
-        scReady=true;
-        scWidget.play();
-        musicBtn.classList.add('playing');
-        isPlaying=true;
+        scReady=true; scWidget.play(); setPlaying(true);
       });
     }
     return;
   }
-  if(!isPlaying){scWidget.play();musicBtn.classList.add('playing');}
-  else{scWidget.pause();musicBtn.classList.remove('playing');}
-  isPlaying=!isPlaying;
-});;
+  scWidget.play(); setPlaying(true);
+});
+
+pauseBtn.addEventListener('click',()=>{
+  if(!scReady) return;
+  scWidget.pause(); setPlaying(false);
+});
   this.style.setProperty('--pct',v+'%');
   if(scReady&&scWidget)scWidget.setVolume(v);
   volIcon.textContent=v===0?'🔇':v<40?'🔉':'🔊';
 });
 
-/* ════════════════════════════
+/*----------------------
    DISCORD LANYARD STATUS
    ════════════════════════════ */
 const DISCORD_ID='1216226389582282842';
