@@ -8,7 +8,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-/* ══ THEMES ══ */
+
 :root{
   --c1:#00d4ff;--c2:#0099cc;--c3:#ff6b2b;
   --glow:rgba(0,212,255,0.55);--glow2:rgba(0,212,255,0.15);
@@ -40,7 +40,7 @@ body{
 .vignette{position:fixed;inset:0;z-index:2;pointer-events:none;
   background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.85) 100%)}
 
-  /* ══ CLICK RIPPLE ══ */
+
 .ripple{
   position:fixed;pointer-events:none;z-index:9999;
   width:10px;height:10px;border-radius:50%;
@@ -53,7 +53,7 @@ body{
   100%{transform:translate(-50%,-50%) scale(8);opacity:0}
 }
 
-/* ══ CARD ══ */
+
 .card{
   position:relative;z-index:10;width:100%;max-width:410px;
   background:linear-gradient(145deg,rgba(5,12,20,.94),rgba(3,8,14,.97));
@@ -81,7 +81,7 @@ body{
 
 .card-inner{padding:24px 22px 24px}
 
-  /* ══ TOP TOOLBAR ══ */
+
 .toolbar{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:18px;gap:8px;
@@ -100,7 +100,7 @@ body{
 .theme-dot.td-blue{background:#00d4ff}
 .theme-dot.td-neon{background:#39ff14}
 
-/* Volume */
+
 .vol-wrap{display:flex;align-items:center;gap:6px}
 .vol-icon{font-size:14px;cursor:pointer;color:var(--c1);transition:color .3s}
 .vol-slider{
@@ -114,7 +114,7 @@ body{
   background:var(--c1);box-shadow:0 0 6px var(--glow);cursor:pointer;
 }
 
-  /* Music btn */
+
 .music-btn{
   width:30px;height:30px;border-radius:3px;
   background:rgba(255,255,255,.04);border:1px solid color-mix(in srgb,var(--c1) 40%,transparent);
@@ -133,7 +133,7 @@ body{
 .music-btn.playing .eq-bars{display:flex}
 .music-btn.playing .music-icon{display:none}
 
-/* ══ CLOCK ══ */
+
 .clock-wrap{
   text-align:center;margin-bottom:18px;
   font-family:'Orbitron',monospace;
@@ -152,7 +152,7 @@ body{
   text-transform:uppercase;margin-top:4px;
 }
 
-  /* ══ HEADER ══ */
+
 .header{display:flex;align-items:center;gap:18px;margin-bottom:22px;animation:fadeUp .6s .3s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
@@ -172,7 +172,7 @@ body{
 }
 .avatar-border::before{content:'';position:absolute;top:-2px;right:8px;width:24px;height:2px;background:var(--c3);transition:background .4s}
 
-/* Discord status badge on avatar */
+
 .discord-badge{
   position:absolute;bottom:-6px;right:-6px;z-index:5;
   background:var(--dark);border:2px solid var(--dark);
@@ -204,7 +204,7 @@ body{
 }
 .tagline{font-size:11px;color:rgba(200,216,232,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
 
-/* Discord status text under tagline */
+
 .discord-status-text{
   font-size:11px;color:rgba(200,216,232,.5);margin-bottom:8px;
   display:flex;align-items:center;gap:5px;
@@ -224,12 +224,12 @@ body{
 }
 @keyframes fillAnim{to{width:72%}}
 
-  /* ══ DIVIDER ══ */
+  
 .divider{display:flex;align-items:center;gap:10px;margin-bottom:16px;animation:fadeUp .6s .5s both}
 .divider-line{flex:1;height:1px;background:color-mix(in srgb,var(--c1) 20%,transparent);transition:background .4s}
 .divider-icon{font-size:9px;color:color-mix(in srgb,var(--c1) 50%,transparent);letter-spacing:2px;font-family:'Orbitron',monospace;transition:color .4s}
 
-/* ══ SOCIALS ══ */
+
 .socials{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:18px;animation:fadeUp .6s .6s both}
 .social-btn{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -254,7 +254,6 @@ body{
 .social-btn svg{width:18px;height:18px;transition:filter .2s}
 .social-btn:hover svg{filter:drop-shadow(0 0 4px var(--c1))}
 
-/* ══ STATUS ══ */
 .status-card{
   display:flex;align-items:center;gap:12px;
   background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);
@@ -277,7 +276,6 @@ body{
 .status-name{font-family:'Orbitron',monospace;font-size:10px;color:#fff;letter-spacing:1px;margin-bottom:3px}
 .status-text{font-size:11px;color:rgba(200,216,232,.4)}
 
-/* ══ STATS ══ */
 .stats{
   display:flex;
   border:1px solid color-mix(in srgb,var(--c1) 12%,transparent);
@@ -289,7 +287,7 @@ body{
 .stat-val{font-family:'Orbitron',monospace;font-size:13px;color:var(--c1);font-weight:700;transition:color .4s}
 .stat-label{font-size:9px;color:rgba(200,216,232,.35);letter-spacing:1px;text-transform:uppercase}
 
-/* ══ PARTICLES ══ */
+
 .particles{position:fixed;inset:0;z-index:2;pointer-events:none}
 .particle{position:absolute;border-radius:50%;animation:floatUp var(--d,8s) linear infinite var(--dl,0s);opacity:0}
 @keyframes floatUp{
@@ -315,7 +313,7 @@ body{
 
   <div class="card-inner">
 
-    <!-- ── TOOLBAR ── -->
+
     <div class="toolbar">
       <div class="theme-btns">
         <div class="theme-dot td-red active" data-theme="theme-red" title="Red"></div>
@@ -333,7 +331,6 @@ body{
     </div>
 
 
-        <!-- ── CLOCK ── -->
 <div class="clock-wrap">
       <div class="clock-time">
         <span id="clkH">00</span><span class="colon">:</span><span id="clkM">00</span><span class="colon">:</span><span id="clkS">00</span>
@@ -341,12 +338,12 @@ body{
       <div class="clock-date" id="clkDate">SUNDAY · 19/04/2026</div>
 </div>
 
-    <!-- ── HEADER ── -->
+
     <div class="header">
       <div class="avatar-wrap">
         <img src="https://avatars.githubusercontent.com/u/256741950?v=4" alt="avatar"/>
         <div class="avatar-border"></div>
-        <!-- Discord status dot -->
+
         <div class="discord-badge">
           <div class="discord-status-dot offline" id="discordDot"></div>
         </div>
@@ -363,7 +360,7 @@ body{
       </div>
     </div>
 
-   <!-- ── SOCIALS ── -->
+
     <div class="socials">
       <a class="social-btn" href="https://www.facebook.com/k4mengxcsxn" title="Facebook">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>FB
@@ -382,14 +379,14 @@ body{
       </a>
     </div>
 
-    <!-- ── DIVIDER ── -->
+
     <div class="divider">
       <div class="divider-line"></div>
       <div class="divider-icon">◈ ABOUT FOR ME ◈</div>
       <div class="divider-line"></div>
     </div>
 
-    <!-- ── STATUS ── -->
+
     <div class="status-card">
       <div class="status-avatar">👾<div class="status-dot"></div></div>
       <div>
@@ -399,7 +396,7 @@ body{
       </div>
     </div>
 
-    <!-- ── STATS ── -->
+
     <div class="stats">
       <div class="stat"><div class="stat-val">🇻🇳 VN</div><div class="stat-label">Region</div></div>
       <div class="stat"><div class="stat-val">67</div><div class="stat-label">Level</div></div>
@@ -408,14 +405,14 @@ body{
   </div>
 </div>
 
-<!-- SoundCloud -->
+
 <iframe id="scFrame" style="position:fixed;bottom:-9999px;left:-9999px;width:1px;height:1px;pointer-events:none;" allow="autoplay"
   src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/duongphuc1909/ngay-anh-roi-paris-homesick&color=%23ff2244&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
 </iframe>
 <script src="https://w.soundcloud.com/player/api.js"></script>
 
 <script>
-/* CANVAS */
+
 const canvas=document.getElementById('bgCanvas');
 const ctx=canvas.getContext('2d');
 function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
@@ -498,7 +495,6 @@ function render(){
 }
 render();
 
-/* PARTICLES */
 const pWrap=document.getElementById('particles');
 function spawnParticles(){
   pWrap.innerHTML='';
@@ -513,7 +509,7 @@ function spawnParticles(){
 }
 spawnParticles();
 
-/* CLOCK */
+
 const DAYS=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
 const MONTHS=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
 function updateClock(){
@@ -526,7 +522,7 @@ function updateClock(){
 }
 updateClock();setInterval(updateClock,1000);
 
-/* THEME */
+
 document.querySelectorAll('.theme-dot').forEach(dot=>{
   dot.addEventListener('click',()=>{
     document.querySelectorAll('.theme-dot').forEach(d=>d.classList.remove('active'));
@@ -536,7 +532,7 @@ document.querySelectorAll('.theme-dot').forEach(dot=>{
   });
 });
 
-/* RIPPLE */
+
 document.addEventListener('click',e=>{
   const r=document.createElement('div');r.className='ripple';
   r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';
@@ -544,7 +540,6 @@ document.addEventListener('click',e=>{
   setTimeout(()=>r.remove(),500);
 });
 
-/* SOUNDCLOUD */
 let scWidget=null,scReady=false;
 function initSC(){
   const frame=document.getElementById('scFrame');
@@ -562,7 +557,7 @@ musicBtn.addEventListener('click',()=>{
   isPlaying=!isPlaying;
 });
 
-/* VOLUME */
+
 const volSlider=document.getElementById('volSlider');
 const volIcon=document.getElementById('volIcon');
 volSlider.addEventListener('input',function(){
@@ -572,7 +567,7 @@ volSlider.addEventListener('input',function(){
   volIcon.textContent=v===0?'🔇':v<40?'🔉':'🔊';
 });
 
-/* DISCORD */
+
 const dot=document.getElementById('discordDot');
 const dotInline=document.getElementById('discordDotInline');
 const statusText=document.getElementById('discordStatusText');
